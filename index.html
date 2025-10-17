@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人名片生成器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>个人名片生成器</h1>
+            <p>创建您的个性化数字名片</p>
+        </header>
+
+        <main class="main-content">
+            <section class="form-section">
+                <h2>填写信息</h2>
+                <form id="cardForm" class="card-form">
+                    <div class="form-group">
+                        <label for="avatar">头像</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="avatar" accept="image/*" required>
+                            <div class="file-input-preview" id="avatarPreview">
+                                <span>选择头像图片</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">姓名 *</label>
+                            <input type="text" id="name" required placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">电话</label>
+                            <input type="tel" id="phone" placeholder="请输入电话号码">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" placeholder="请输入邮箱地址">
+                        </div>
+                        <div class="form-group">
+                            <label for="theme">主题风格</label>
+                            <select id="theme">
+                                <option value="minimal">极简</option>
+                                <option value="business">商务</option>
+                                <option value="neon">霓虹</option>
+                                <option value="pastel">柔和</option>
+                                <option value="dark">暗黑</option>
+                                <option value="sunset">日落</option>
+                                <option value="ocean">海洋</option>
+                                <option value="forest">森林</option>
+                                <option value="retro">复古</option>
+                                <option value="cyber">赛博</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="homepage">个人主页</label>
+                        <input type="url" id="homepage" placeholder="https://yourwebsite.com">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="github">GitHub</label>
+                            <input type="text" id="github" placeholder="github username">
+                        </div>
+                        <div class="form-group">
+                            <label for="x">X(Twitter)</label>
+                            <input type="text" id="x" placeholder="@username">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">个人简介</label>
+                        <textarea id="bio" rows="4" placeholder="请输入个人简介..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">生成名片</span>
+                            <span class="btn-loading" style="display: none;">生成中...</span>
+                        </button>
+                        <button type="button" id="resetBtn" class="btn btn-secondary">重置</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="preview-section">
+                <h2>预览</h2>
+                <div id="cardPreview" class="card-preview-container">
+                    <div class="preview-placeholder">
+                        <div class="preview-icon">📇</div>
+                        <p>填写表单后，这里将显示名片预览</p>
+                    </div>
+                </div>
+
+                <div id="downloadSection" class="download-section" style="display: none;">
+                    <button id="downloadBtn" class="btn btn-success">
+                        <span class="btn-icon">⬇️</span>
+                        下载名片图片
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 个人名片生成器</p>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast" style="display: none;"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

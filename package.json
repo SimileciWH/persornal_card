@@ -1,0 +1,19 @@
+{
+  "name": "personal-card-generator",
+  "version": "1.0.0",
+  "description": "Personal card generator with multiple themes",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "build": "echo 'Build complete'",
+    "dev": "vitest --watch"
+  },
+  "keywords": ["card", "generator", "personal", "themes"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^1.6.1",
+    "@vitest/ui": "^1.6.1"
+  }
+}

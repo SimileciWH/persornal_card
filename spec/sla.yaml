@@ -1,0 +1,15 @@
+api: CardGen@v1
+slo:
+  - name: download_success_rate
+    target: 99.9
+    window: 7d
+  - name: download_p95_latency
+    target: 300ms
+    window: 1d
+  - name: preview_availability
+    target: 99.95
+    window: 30d
+telemetry:
+  logs: false   # 纯前端，无后端日志
+  metrics: false
+  traces: false
