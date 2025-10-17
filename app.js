@@ -195,45 +195,57 @@ function generateCardPreview(data) {
     const themeClass = `theme-${data.theme}`;
 
     const cardHTML = `
-        <div class="card-preview ${themeClass}">
-            ${data.avatar ? `<img src="${data.avatar}" alt="${data.name}" class="card-avatar">` : ''}
-            <h3 class="card-name">${escapeHtml(data.name || '姓名')}</h3>
-            <p class="card-bio">${escapeHtml(data.bio || '这个人很懒，什么都没写')}</p>
+        <div class="card-preview-compact ${themeClass}">
+            <!-- 头部区域：头像 + 联系信息 -->
+            <div class="card-compact-header">
+                ${data.avatar ? `<img src="${data.avatar}" alt="${data.name}" class="card-compact-avatar size-medium">` : ''}
 
-            <div class="card-contacts">
-                ${data.phone ? `
-                <div class="card-contact-item">
-                    <span class="card-contact-icon">📱</span>
-                    <span>${escapeHtml(data.phone)}</span>
-                </div>` : ''}
+                <div class="card-compact-contacts">
+                    <h3 class="card-compact-name">${escapeHtml(data.name || '姓名')}</h3>
 
-                ${data.email ? `
-                <div class="card-contact-item">
-                    <span class="card-contact-icon">📧</span>
-                    <span>${escapeHtml(data.email)}</span>
-                </div>` : ''}
+                    ${data.phone ? `
+                    <div class="card-compact-contact-item">
+                        <span class="card-compact-contact-icon">📱</span>
+                        <span>${escapeHtml(data.phone)}</span>
+                    </div>` : ''}
 
-                ${data.homepage ? `
-                <div class="card-contact-item">
-                    <span class="card-contact-icon">🌐</span>
-                    <a href="${escapeHtml(data.homepage)}" target="_blank" style="color: inherit; text-decoration: none;">
-                        ${escapeHtml(data.homepage)}
-                    </a>
-                </div>` : ''}
+                    ${data.email ? `
+                    <div class="card-compact-contact-item">
+                        <span class="card-compact-contact-icon">📧</span>
+                        <span>${escapeHtml(data.email)}</span>
+                    </div>` : ''}
+
+                    ${data.homepage ? `
+                    <div class="card-compact-contact-item">
+                        <span class="card-compact-contact-icon">🌐</span>
+                        <a href="${escapeHtml(data.homepage)}" target="_blank" style="color: inherit; text-decoration: none;">
+                            ${escapeHtml(data.homepage)}
+                        </a>
+                    </div>` : ''}
+                </div>
             </div>
 
+            <!-- 内容区域：个人简介 -->
+            ${data.bio ? `
+            <div class="card-compact-content">
+                <p class="card-compact-bio alignment-left">${escapeHtml(data.bio)}</p>
+            </div>` : ''}
+
+            <!-- 底部区域：社交链接 -->
             ${(data.github || data.x) ? `
-            <div class="card-social-links">
+            <div class="card-compact-footer spacing-medium">
                 ${data.github ? `
                 <a href="https://github.com/${escapeHtml(data.github)}" target="_blank"
-                   class="card-social-link" title="GitHub">
-                    <span>🐙</span>
+                   class="card-compact-social-link" title="GitHub">
+                    <span class="card-compact-social-icon">🐙</span>
+                    <span class="card-compact-social-text">${escapeHtml(data.github)}</span>
                 </a>` : ''}
 
                 ${data.x ? `
                 <a href="https://twitter.com/${escapeHtml(data.x.replace('@', ''))}" target="_blank"
-                   class="card-social-link" title="X (Twitter)">
-                    <span>🐦</span>
+                   class="card-compact-social-link" title="X (Twitter)">
+                    <span class="card-compact-social-icon">🐦</span>
+                    <span class="card-compact-social-text">${escapeHtml(data.x)}</span>
                 </a>` : ''}
             </div>` : ''}
         </div>
@@ -279,7 +291,7 @@ async function downloadCard() {
         setLoading(true);
 
         // 使用html2canvas将预览转换为图片
-        const canvas = await html2canvas(elements.cardPreview.querySelector('.card-preview'), {
+        const canvas = await html2canvas(elements.cardPreview.querySelector('.card-preview-compact'), {
             backgroundColor: null,
             scale: 2,
             logging: false
